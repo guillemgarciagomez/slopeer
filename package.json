@@ -34,5 +34,7 @@
       "pre-commit": "gulp lint"
     }
   },
-  "dependencies": {}
+  "dependencies": {
+    "commitizen": "^4.2.3"
+  }
 }
