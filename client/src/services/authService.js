@@ -6,6 +6,7 @@ const login = async (credentials) => {
 }
 
 const register = async (userData) => {
+  console.log('trying to register! with', userData);
   return await client.mutation(mutations.register, userData)
     .toPromise();
 }
