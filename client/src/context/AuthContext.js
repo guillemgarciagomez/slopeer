@@ -6,7 +6,7 @@ import * as authService from '../services/authService';
 
 const AuthContext = createContext()
 
-function AuthProvider (props) {
+function AuthProvider(props) {
   const [user, setUser] = useState(null)
 
   const loginWithToken = (token) => {
@@ -22,7 +22,7 @@ function AuthProvider (props) {
     }
   }
 
-  function checkUser () {
+  function checkUser() {
     let token;
     if (typeof window !== 'undefined') {
       token = localStorage.getItem('accessToken');
@@ -40,7 +40,9 @@ function AuthProvider (props) {
   }
 
   const register = async (data) => {
-    const { data: { createUser: token } } = await authService.register(data)
+    const result = await authService.register(data)
+    console.log('result: ', result);
+    const { data: { createUser: token } } = result;
     if (token) loginWithToken(token);
     return token ? true : false;
   }
