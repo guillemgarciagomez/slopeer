@@ -1,4 +1,4 @@
-"use strict";
+'use strict';
 const bcrypt = require('bcrypt');
 const { User, Route } = require('../../models');
 const { uploadProfilePicture, uploadRoutePicture } = require('../../utils/uploads');

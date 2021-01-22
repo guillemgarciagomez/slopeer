@@ -1,4 +1,4 @@
-"use strict";
+'use strict';
 const { Schema, model } = require('mongoose');
 const routeSchema = new Schema({
     name: { type: String, required: true },

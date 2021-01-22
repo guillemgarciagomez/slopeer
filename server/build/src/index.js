@@ -1,11 +1,11 @@
-"use strict";
+'use strict';
 var __importDefault = (this && this.__importDefault) || function (mod) {
-    return (mod && mod.__esModule) ? mod : { "default": mod };
+    return (mod && mod.__esModule) ? mod : { 'default': mod };
 };
-Object.defineProperty(exports, "__esModule", { value: true });
+Object.defineProperty(exports, '__esModule', { value: true });
 require('dotenv').config();
-const graphql_1 = __importDefault(require("./graphql"));
-const models_1 = require("./models");
+const graphql_1 = __importDefault(require('./graphql'));
+const models_1 = require('./models');
 models_1.connection()
     .then(() => {
     graphql_1.default
