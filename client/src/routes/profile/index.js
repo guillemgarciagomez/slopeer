@@ -1,35 +1,35 @@
-import { useQuery } from '@urql/preact';
-import { route } from 'preact-router';
+import { useQuery } from '@urql/preact'
+import { route } from 'preact-router'
 
-import { queries } from '../../services/graphqlService';
-import { Spinner, Content, SmallRouteCard, Picture } from '../../components';
-import { useAuth } from "../../context/AuthContext";
-import { useNetwork } from '../../context/NetworkContext';
-import style from './style.css';
+import { queries } from '../../services/graphqlService'
+import { Spinner, Content, SmallRouteCard, Picture } from '../../components'
+import { useAuth } from '../../context/AuthContext'
+import { useNetwork } from '../../context/NetworkContext'
+import style from './style.css'
 
 const Profile = ({ matches: { id } }) => {
-  const { user, logout } = useAuth();
-  const { online } = useNetwork();
+  const { user, logout } = useAuth()
+  const { online } = useNetwork()
 
-  const [{ data, fetching, error }, _] = useQuery({
+  const [{ data, fetching, error }] = useQuery({
     query: queries.userDataQuery,
-    variables: { _id: id },
-  });
+    variables: { _id: id }
+  })
 
-  const renderUserData = ({ username, profile_picture, owned_routes }) => {
-    const routes = owned_routes.filter(route => route.public);
+  const renderUserData = ({ username, profilePicture, ownedRoutes }) => {
+    const routes = ownedRoutes.filter(route => route.public)
     return (
       <div class={style.userData}>
         <h1>{username}</h1>
         <Picture
           profile={true}
-          picture={profile_picture}
+          picture={profilePicture}
           username={username}
           pictureStyle={style.avatar}
           imageStyle={style.image}
         />
-        { user === id ?
-          <div class={style.personal}>
+        { user === id
+          ? <div class={style.personal}>
             <button onClick={logout} class={style.logout}>LOGOUT</button>
             {
               online &&
@@ -58,4 +58,4 @@ const Profile = ({ matches: { id } }) => {
   )
 }
 
-export default Profile;
+export default Profile

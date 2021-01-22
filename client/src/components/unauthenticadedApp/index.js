@@ -1,8 +1,8 @@
-import { Router } from 'preact-router';
+import { Router } from 'preact-router'
 
-import Login from '../../routes/login';
-import Register from '../../routes/register';
-import { Redirect } from '../';
+import Login from '../../routes/login'
+import Register from '../../routes/register'
+import { Redirect } from '../'
 
 const UnauthenticatedApp = () =>
   <Router>
@@ -11,4 +11,4 @@ const UnauthenticatedApp = () =>
     <Redirect default to='/login' />
   </Router>
 
-export default UnauthenticatedApp;
+export default UnauthenticatedApp

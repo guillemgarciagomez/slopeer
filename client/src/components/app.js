@@ -1,10 +1,10 @@
-import { AuthenticatedApp, UnauthenticatedApp, OfflineWarning } from './';
-import { useAuth } from '../context/AuthContext';
-import { useNetwork } from '../context/NetworkContext';
+import { AuthenticatedApp, UnauthenticatedApp, OfflineWarning } from './'
+import { useAuth } from '../context/AuthContext'
+import { useNetwork } from '../context/NetworkContext'
 
 const App = () => {
-  const { user } = useAuth();
-  const { online } = useNetwork();
+  const { user } = useAuth()
+  const { online } = useNetwork()
 
   return (
     <div id="app">
@@ -14,4 +14,4 @@ const App = () => {
   )
 }
 
-export default App;
+export default App

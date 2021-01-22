@@ -1,26 +1,25 @@
-import { FormCard, Upload } from '../';
-import { grades } from '../../utils/routes';
+import { FormCard, Upload } from '../'
+import { grades } from '../../utils/routes'
 import style from './style.css'
 
 const RouteForm = ({ title, showSpinner, routeData, setRouteData, onSubmit, validate, hasCoords, coords, setCurrentLoc, setMapLoc }) => {
-
   const handleChange = (e) => {
-    const { target } = e;
-    const value = target.type === 'checkbox' ? target.checked : target.value;
-    const name = target.name;
+    const { target } = e
+    const value = target.type === 'checkbox' ? target.checked : target.value
+    const name = target.name
 
     if (name === 'picture') {
       if (target.validity.valid && target.files) {
         setRouteData(prevData => ({
           ...prevData,
           picture: target.files[0]
-        }));
+        }))
       }
     } else {
       setRouteData(prevData => ({
         ...prevData,
         [name]: value
-      }));
+      }))
     }
   }
 
@@ -40,8 +39,8 @@ const RouteForm = ({ title, showSpinner, routeData, setRouteData, onSubmit, vali
           <input type='checkbox' id='public' name='public' checked={routeData.public} />
         </div>
         {
-          hasCoords ?
-            <div class={style.coords} >
+          hasCoords
+            ? <div class={style.coords} >
               <h2 class={style.coordsTitle}>Coordinates</h2>
               <div class={style.coord}>
                 <h3>Latitude</h3>
@@ -67,7 +66,8 @@ const RouteForm = ({ title, showSpinner, routeData, setRouteData, onSubmit, vali
                   Map
                 </button>
               </div>
-            </div> : null
+            </div>
+            : null
         }
         <div class={style.type}>
           <h2>Type</h2>
@@ -97,5 +97,4 @@ const RouteForm = ({ title, showSpinner, routeData, setRouteData, onSubmit, vali
   )
 }
 
-export default RouteForm;
-
+export default RouteForm

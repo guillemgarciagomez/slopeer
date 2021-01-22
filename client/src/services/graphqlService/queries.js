@@ -1,4 +1,4 @@
-import { gql } from '@urql/preact';
+import { gql } from '@urql/preact'
 
 const queries = {
   publicRoutesQuery: gql`
@@ -68,4 +68,4 @@ const queries = {
   `
 }
 
-export default queries;
+export default queries

@@ -1,4 +1,4 @@
-"use strict";
+'use strict';
 const { User } = require('../../models');
 const getRoutes = async (_id, routes) => {
     const user = await User.findById(_id).populate(routes);

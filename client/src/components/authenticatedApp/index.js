@@ -1,17 +1,17 @@
 
-import { Router } from 'preact-router';
+import { Router } from 'preact-router'
 
-import { Footer } from '../';
+import { Footer } from '../'
 
 // Code-splitting is automated for `routes` directory
-import Map from '../../routes/map';
-import Profile from '../../routes/profile';
-import Redirect from '../redirect';
-import MyRoutes from '../../routes/myRoutes';
-import RouteDetails from '../../routes/routeDetails';
-import AddRoute from '../../routes/addRoute';
-import EditProfile from '../../routes/editProfile';
-import EditRoute from '../../routes/editRoute';
+import Map from '../../routes/map'
+import Profile from '../../routes/profile'
+import Redirect from '../redirect'
+import MyRoutes from '../../routes/myRoutes'
+import RouteDetails from '../../routes/routeDetails'
+import AddRoute from '../../routes/addRoute'
+import EditProfile from '../../routes/editProfile'
+import EditRoute from '../../routes/editRoute'
 
 const AuthenticatedApp = () => (
   <>
@@ -27,6 +27,6 @@ const AuthenticatedApp = () => (
     </Router>
     <Footer />
   </>
-);
+)
 
-export default AuthenticatedApp;
+export default AuthenticatedApp

@@ -1,13 +1,13 @@
-import { Link } from 'preact-router/match';
-import style from './style.css';
+import { Link } from 'preact-router/match'
+import style from './style.css'
 
 import { NavButton, Content } from '../'
-import { useAuth } from '../../context/AuthContext';
-import { useNetwork } from '../../context/NetworkContext';
+import { useAuth } from '../../context/AuthContext'
+import { useNetwork } from '../../context/NetworkContext'
 
 const Footer = () => {
-  const { user } = useAuth();
-  const { online } = useNetwork();
+  const { user } = useAuth()
+  const { online } = useNetwork()
   return (
     <footer class={style.footer}>
       <Content>
@@ -22,4 +22,4 @@ const Footer = () => {
   )
 }
 
-export default Footer;
+export default Footer

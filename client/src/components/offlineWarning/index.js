@@ -1,4 +1,4 @@
-import style from './style.css';
+import style from './style.css'
 
 const OfflineWarning = () =>
   <div class={style.warning}>
@@ -7,5 +7,4 @@ const OfflineWarning = () =>
     </svg>
   </div>
 
-
-export default OfflineWarning;
+export default OfflineWarning

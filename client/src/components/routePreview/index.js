@@ -1,21 +1,20 @@
-import { useQuery } from '@urql/preact';
+import { useQuery } from '@urql/preact'
 import { route } from 'preact-router'
 
-import { queries } from '../../services/graphqlService';
-import { routePicture } from '../../utils/routes';
-import { Spinner } from '../';
+import { queries } from '../../services/graphqlService'
+import { routePicture } from '../../utils/routes'
+import { Spinner, Picture } from '../'
 import style from './style.css'
-import { Picture } from '../';
 
 const RoutePreview = ({ _id }) => {
   const [{ data, fetching }, _] = useQuery({
     query: queries.routeDetailsQuery,
-    variables: { _id },
-  });
+    variables: { _id }
+  })
 
   if (fetching) return <Spinner />
 
-  const { picture, name, type } = data.route;
+  const { picture, name, type } = data.route
 
   return (
     <div class={style.preview} onClick={() => route(`route/${_id}`)}>
@@ -33,8 +32,6 @@ const RoutePreview = ({ _id }) => {
       </div>
     </div>
   )
-
-
 }
 
 export default RoutePreview

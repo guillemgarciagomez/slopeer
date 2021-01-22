@@ -1,8 +1,8 @@
-import { route } from 'preact-router';
+import { route } from 'preact-router'
 
-import { Picture } from '../';
-import { gradeColor, gradeBckgColor } from '../../utils/routes';
-import style from './style';
+import { Picture } from '../'
+import { gradeColor, gradeBckgColor } from '../../utils/routes'
+import style from './style'
 
 const LargeRouteCard = ({ data: { picture, name, grade, _id, type } }) =>
   <div class={style.split} onClick={() => route(`route/${_id}`)}>
@@ -29,6 +29,5 @@ const LargeRouteCard = ({ data: { picture, name, grade, _id, type } }) =>
       </div>
     </div>
   </div>
-
 
 export default LargeRouteCard

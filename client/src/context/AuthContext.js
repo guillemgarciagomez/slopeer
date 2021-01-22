@@ -1,57 +1,56 @@
-import { useContext, useState } from 'preact/hooks';
-import { createContext } from 'preact';
-import JwtDecode from 'jwt-decode';
+import { useContext, useState } from 'preact/hooks'
+import { createContext } from 'preact'
+import JwtDecode from 'jwt-decode'
 
-import * as authService from '../services/authService';
+import * as authService from '../services/authService'
 
 const AuthContext = createContext()
 
-function AuthProvider(props) {
+function AuthProvider (props) {
   const [user, setUser] = useState(null)
 
   const loginWithToken = (token) => {
     try {
-      const { _id, exp } = JwtDecode(token);
+      const { _id, exp } = JwtDecode(token)
       if (Date.now() > exp * 1000) throw new Error()
       if (typeof window !== 'undefined') {
-        localStorage.setItem('accessToken', token);
+        localStorage.setItem('accessToken', token)
       }
-      setUser(_id);
+      setUser(_id)
     } catch {
-      setUser(null);
+      setUser(null)
     }
   }
 
-  function checkUser() {
-    let token;
+  function checkUser () {
+    let token
     if (typeof window !== 'undefined') {
-      token = localStorage.getItem('accessToken');
+      token = localStorage.getItem('accessToken')
     }
-    token ? loginWithToken(token) : setUser(null);
+    token ? loginWithToken(token) : setUser(null)
   }
 
-  checkUser();
+  checkUser()
 
   const login = async (credentials) => {
     const { data: { login: token } } = await authService.login(credentials)
-    if (token) loginWithToken(token);
-    return token ? true : false;
-
+    if (token) loginWithToken(token)
+    return !!token
   }
 
   const register = async (data) => {
     const result = await authService.register(data)
-    console.log('result: ', result);
-    const { data: { createUser: token } } = result;
-    if (token) loginWithToken(token);
-    return token ? true : false;
+    console.log('result: ', result)
+    const { data: { createUser: token } } = result
+    if (token) loginWithToken(token)
+    return !!token
   }
 
   const logout = () => {
     if (typeof window !== 'undefined') {
-      localStorage.removeItem('accessToken');
+      localStorage.removeItem('accessToken')
     }
-    setUser(null);
+    setUser(null)
   }
 
   return (

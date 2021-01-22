@@ -1,11 +1,12 @@
-import { Spinner } from '../';
+import { Spinner } from '../'
 import style from './style'
 
 const FormCard = ({ children, showSpinner }) =>
   <div class={style.bcg}>
     {
-      showSpinner ? <Spinner /> :
-        <>
+      showSpinner
+        ? <Spinner />
+        : <>
           <div class={style.card}>
             {children}
           </div>
