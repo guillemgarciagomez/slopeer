@@ -1,6 +1,19 @@
-const { Schema, model } = require('mongoose');
+'use strict';
+import { Schema, model, Document} from 'mongoose';
 
-const routeSchema = new Schema({
+
+export interface Iroute extends Document{
+  name: String;
+  grade: String; 
+  author: String;
+  public: Boolean; 
+  picture: String; 
+  description: String; 
+  type: String; 
+  lat: String;
+  lng: String;
+} 
+const routeSchema: Schema = new Schema({
   name: { type: String, required: true },
   grade: { type: String, required: true },
   author: { type: String, ref: 'User', required: true },
@@ -12,4 +25,4 @@ const routeSchema = new Schema({
   lng: { type: String, required: true }
 });
 
-module.exports = model('Route', routeSchema);
+export default model<Iroute>('Route', routeSchema);

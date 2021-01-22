@@ -1,6 +1,19 @@
-const { Schema, model } = require('mongoose');
+import { Schema, model} from 'mongoose';
+// const { Schema, model} = require('mongoose');
+import {Document} from 'mongoose';
+// const { Document} = require('mongoose');
 const jwt = require('jsonwebtoken');
+import {Iroute} from './route.model'; 
 
+export interface Iuser extends Document {
+  _id: string;
+  email: string;
+  username: String;
+  password: String;
+  profile_picture: String;
+  owned_routes: Iroute[]; 
+  saved_routes: Iroute[];
+}
 const userSchema = new Schema({
   email: { type: String, required: true },
   username: { type: String, required: true },
@@ -21,4 +34,4 @@ userSchema.methods.generateAuthToken = function () {
   return token;
 };
 
-module.exports = model('User', userSchema);
+export default model<Iuser>('User', userSchema);

@@ -1,8 +1,10 @@
 const bcrypt = require('bcrypt');
-const { User, Route } = require('../../models');
+
+import  User, {Iuser}  from '../../models/user.model';
+import Route, {route} from '../../models/route.model';
 const { uploadProfilePicture, uploadRoutePicture } = require('../../utils/uploads');
 
-exports.createRoute = async (_, { input }) => {
+export const createRoute = async (_:any, { input }) => {
   const route = new Route({ ...input, picture: null });
 
   if (input.picture) {
@@ -16,7 +18,7 @@ exports.createRoute = async (_, { input }) => {
   return route;
 };
 
-exports.updateRoute = async (_, { _id, input }) => {
+export const updateRoute = async (_:any, { _id, input }) => {
   if (input.picture) {
     const picturePath = await uploadRoutePicture(input.picture, _id);
     input.picture = picturePath;
@@ -30,9 +32,11 @@ exports.removeRoute = async (_, { _id }) => {
   await User.updateMany({}, { $pull: { 'saved_routes': _id } });
   return route;
 };
-
-exports.createUser = async (_, { input: { email, username, password } }, { res }) => {
-  let user = await User.findOne({ email });
+type createUserQuery = {
+  input: { email:string; username:string; password:string} 
+}
+export const createUser = async (_:any, { input: { email, username, password } }:createUserQuery, { res }) => {
+  let user:Iuser = await User.findOne({ email });
   if (user) {
     res.status(409);
     return;
