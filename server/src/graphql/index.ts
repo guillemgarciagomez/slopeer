@@ -21,4 +21,4 @@ app.use(
 
 server.applyMiddleware({ app });
 
-module.exports = app;
+export default app;

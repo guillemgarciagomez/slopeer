@@ -1,14 +1,29 @@
-import { Iroute } from "../../models/route.model";
+import User from '../../models/user.model';
+import { ID } from '../../types/types';
 
-const { User } = require('../../models');
+type Input = {
+  _id?: ID;
+  author?: string;
+}
 
-const getRoutes = async (_id, routes: string) => {
+
+const getRoutes = async (_id: ID, routes: string) => {
   const user = await User.findById(_id).populate(routes);
-  return user:Iuser[routes];
+  return user;
 };
 
-exports.get_owned_routes = async ({ _id }) => await getRoutes(_id, 'owned_routes');
 
-exports.get_saved_routes = async ({ _id }) => await getRoutes(_id, 'saved_routes');
+exports.get_owned_routes = async ({ _id }: Input) => {
+  if (_id) return await getRoutes(_id, 'owned_routes');
+  else return 1;
+}
 
-exports.get_author = async ({ author: id }) => await User.findById(id);
+exports.get_saved_routes = async ({ _id }: Input) => {
+  if (_id) return await getRoutes(_id, 'saved_routes');
+  else return 1;
+}
+
+exports.get_author = async ({ author: id }: Input) => {
+  if (id) return await User.findById(id);
+  else return 1;
+};

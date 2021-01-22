@@ -1,7 +1,8 @@
 "use strict";
-const { Schema, model } = require('mongoose');
+Object.defineProperty(exports, "__esModule", { value: true });
+const mongoose_1 = require("mongoose");
 const jwt = require('jsonwebtoken');
-const userSchema = new Schema({
+const userSchema = new mongoose_1.Schema({
     email: { type: String, required: true },
     username: { type: String, required: true },
     password: { type: String, required: true },
@@ -15,4 +16,4 @@ userSchema.methods.generateAuthToken = function () {
     }, process.env.JWTPrivateKey, { expiresIn: '3d' });
     return token;
 };
-module.exports = model('User', userSchema);
+exports.default = mongoose_1.model('User', userSchema);
