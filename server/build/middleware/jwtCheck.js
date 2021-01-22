@@ -1,4 +1,4 @@
-'use strict';
+"use strict";
 const jwt = require('jsonwebtoken');
 module.exports.jwtCheck = (req, _, next) => {
     const token = req.headers.authorization;

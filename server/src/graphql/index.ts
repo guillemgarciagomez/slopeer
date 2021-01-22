@@ -1,8 +1,8 @@
-const express = require('express');
-const cors = require('cors');
-const { graphqlUploadExpress } = require('graphql-upload');
-const { ApolloServer } = require('apollo-server-express');
-const { jwtCheck } = require('../middleware/jwtCheck');
+import express from 'express';
+import cors from 'cors';
+import { graphqlUploadExpress } from 'graphql-upload/index';
+import { ApolloServer } from 'apollo-server-express';
+import jwtCheck from '../middleware/jwtCheck';
 
 const server = new ApolloServer({
   typeDefs: require('./schemas'),
