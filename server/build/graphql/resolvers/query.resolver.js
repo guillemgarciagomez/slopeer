@@ -1,4 +1,4 @@
-'use strict';
+"use strict";
 const User = require('../../models/user.model');
 const Route = require('../../models/route.model');
 exports.routes = async (_, args) => await Route.find({ ...args })
