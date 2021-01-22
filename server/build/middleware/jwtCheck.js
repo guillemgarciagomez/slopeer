@@ -1,10 +1,15 @@
 "use strict";
-const jwt = require('jsonwebtoken');
-module.exports.jwtCheck = (req, _, next) => {
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
+Object.defineProperty(exports, "__esModule", { value: true });
+const jsonwebtoken_1 = __importDefault(require("jsonwebtoken"));
+exports.jwtCheck = (req, _, next) => {
     const token = req.headers.authorization;
-    if (token) {
-        const _id = jwt.verify(token, process.env.JWTPrivateKey);
-        req._id = _id;
+    if (token && process.env.JWTPrivateKey) {
+        const _id = jsonwebtoken_1.default.verify(token, process.env.JWTPrivateKey);
+        req.body._id = _id;
     }
     next();
 };
+exports.default = exports;
