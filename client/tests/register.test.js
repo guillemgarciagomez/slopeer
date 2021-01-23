@@ -1,5 +1,5 @@
 import { h } from 'preact';
-import Register from '../../src/routes/register';
+import Register from '../src/routes/register';
 
 import { render, fireEvent, screen, cleanup } from '@testing-library/preact';
 
