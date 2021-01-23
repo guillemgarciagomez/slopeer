@@ -4,5 +4,5 @@
   ],
   "ext": ".ts, .js",
   "ignore": [],
-  "exec": "ts-node ./src/index.ts --watch"
+  "exec": "ts-node ./src/index.ts --watch --files"
 }
