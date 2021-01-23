@@ -1,6 +1,6 @@
 const mongoose = require('mongoose');
 import {Iroute} from './route.model';
-import {Iuser} from './user.model'; 
+import {Iuser} from './user.model';
 export const Route:Iroute = require('./route.model');
 export const User:Iuser = require('./user.model');
 
@@ -11,6 +11,3 @@ export async function connection () {
     { useUnifiedTopology: true, useNewUrlParser: true },
     (err:string) => console.log(`Connected database ${DB}, error: ${err} 🗄`)); //eslint-disable-line no-console
 }
-
-
-
