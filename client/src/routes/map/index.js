@@ -1,7 +1,7 @@
 import { useRef, useState, useEffect } from 'preact/hooks'
 import { useQuery } from '@urql/preact'
-import mapboxgl from 'mapbox-gl'
-
+// import mapboxgl from 'mapbox-gl'
+const mapboxgl = require('mapbox-gl')
 import { mapboxToken, mapboxStyle } from '../../../config'
 import { RouteMarker, RoutePreview, Content } from '../../components'
 import { queries } from '../../services/graphqlService'
