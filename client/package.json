@@ -1,6 +1,9 @@
 {
   "private": true,
   "name": "client",
+  "jest": {
+    "verbose": true
+  },
   "version": "0.0.0",
   "license": "MIT",
   "scripts": {
@@ -30,6 +33,7 @@
     "eslint-plugin-node": "^11.1.0",
     "eslint-plugin-promise": "^4.2.1",
     "eslint-plugin-react": "^7.22.0",
+    "fake-indexeddb": "^3.1.2",
     "jest": "^24.9.0",
     "jest-preset-preact": "^1.0.0",
     "preact-cli": "^3.0.0",
@@ -39,6 +43,7 @@
     "@urql/exchange-graphcache": "^3.4.0",
     "@urql/exchange-multipart-fetch": "^0.1.11",
     "@urql/preact": "^1.4.4",
+    "babel-plugin-transform-react-jsx": "^6.24.1",
     "eslint-plugin-preact": "^0.1.0",
     "graphql": "^15.4.0",
     "jwt-decode": "^3.1.2",

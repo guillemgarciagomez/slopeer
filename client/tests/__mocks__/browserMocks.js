@@ -3,19 +3,24 @@
  * An example how to mock localStorage is given below 👇
  */
 
-/*
+
 // Mocks localStorage
-const localStorageMock = (function() {
-	let store = {};
+// const localStorageMock = (function() {
+// 	let store = {};
 
-	return {
-		getItem: (key) => store[key] || null,
-		setItem: (key, value) => store[key] = value.toString(),
-		clear: () => store = {}
-	};
+// 	return {
+// 		getItem: (key) => store[key] || null,
+// 		setItem: (key, value) => store[key] = value.toString(),
+// 		clear: () => store = {}
+// 	};
 
-})();
+// })();
 
-Object.defineProperty(window, 'localStorage', {
-	value: localStorageMock
-}); */
+// Object.defineProperty(window, 'localStorage', {
+// 	value: localStorageMock
+// }); 
+
+function noOp () {'' }
+if (typeof window.URL.createObjectURL === 'undefined') { 
+  Object.defineProperty(window.URL, 'createObjectURL', { value: noOp})
+}
