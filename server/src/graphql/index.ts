@@ -16,7 +16,7 @@ const server = new ApolloServer({
 });
 
 const app = express();
-
+//individual app.use for testing separately 
 app
 .use(cors())
 .use(express.static('public'))
