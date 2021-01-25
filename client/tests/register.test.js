@@ -5,8 +5,7 @@ import Register from '../src/routes/register/index';
 import { render, fireEvent, screen, cleanup } from '@testing-library/preact';
 describe('Register', ()=> {
   window.URL.createObjectURL = jest.fn();
-  // const { debug } = render(<Register />)
-  // debug()
+
   test('should be able to register', async ()=> {
    
     const {debug} = render( <Register /> );
