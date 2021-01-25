@@ -4,7 +4,10 @@ import Register from '../src/routes/register/index';
 
 import { render, fireEvent, screen, cleanup } from '@testing-library/preact';
 describe('Register', ()=> {
-  window.URL.createObjectURL = jest.fn();
+  jest.mock('mapbox-gl/dist/mapbox-gl', () => ({
+    Map: () => ({})
+    }));
+  // window.URL.createObjectURL = jest.fn();
 
   test('should be able to register', async ()=> {
    
