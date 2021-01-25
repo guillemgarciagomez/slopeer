@@ -17,16 +17,13 @@ const server = new ApolloServer({
 
 const app = express();
 
+//changed to individual .use for testing one at a time
 app
 .use(cors())
 .use(express.static('public'))
 .use(jwtCheck)
 .use(graphqlUploadExpress({ maxFileSize: 10000000, maxFiles: 11 }))
-// app.use(
-//   cors(),
-//   express.static('public'),
-//   jwtCheck,
-//   graphqlUploadExpress({ maxFileSize: 10000000, maxFiles: 11 }));
+
 
 server.applyMiddleware({ app });
 
