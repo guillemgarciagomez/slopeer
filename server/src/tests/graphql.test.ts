@@ -3,11 +3,11 @@ import { createTestClient } from 'apollo-server-testing';
 import {ApolloServer } from  'apollo-server-express';
 import {Request, Response} from 'express';
 import mongoose from 'mongoose';
-import casual from 'casual';
-import {Route, User} from '../models/index';
+// import casual from 'casual';
+// import {Route, User} from '../models/index';
 import resolvers from '../graphql/resolvers'
 import typeDefs from '../graphql/schemas'
-import {queries, mutations} from './__mocks__/queryAndMutations'
+import { mutations} from './__mocks__/queryAndMutations'
 
 //mocking connection to DB and GraphQL
 type express= {res:Response, req: Request}  
@@ -39,8 +39,8 @@ const closeDbConnection = async () => {
 }
 //copy of models
 
-const userModel = User;
-const routeModel = Route
+// const userModel = User;
+// const routeModel = Route
 
 
 beforeAll(async ()=> {
@@ -61,35 +61,32 @@ describe('Add new user', ()=> {
  
  
   const mockUser = {
-    username: casual.name,
-    email: casual.email,
-    password: casual.password
+    username: 'test',
+    email: 'mail_1@dots.com',
+    password: 'test1'
   }
+ 
 
   
-  it('should get routes', async ()=> {
-  const res = await query({query:queries.GET_ROUTES})
-  console.log(res, 'res')
-  expect(res).toMatchSnapshot();
-  })
+  // it('should get routes', async ()=> {
+  // const res = await query({query:queries.GET_ROUTES})
+  // console.log(res, 'res')
+  // expect(res).toMatchSnapshot();
+  // })
   
-
-  //how to mutate...how do i compare with what is created in the DB 
-
-  // it('should add a new user', async ()=>{
+  test('should add a new user', async ()=>{
+    let res = await mutate ({
+      mutation: mutations.REGISTER, 
+      variables: { 
+        ...mockUser
+      }});
+    expect(res.errors).toBeUndefined();
     
-  //   const { data } = await mutate({
-  //     mutation: mutations.REGISTER,
-  //     variables: { 
-  //       ...mockUser
-  //     }
-  //   })
+      
+    res =  await mutate ({mutation: mutations.LOGIN,variables: {email: mockUser.email, password: mockUser.password}});
+    //what to expect? 
+    expect (res.data.user).toBeTruthy()
 
-  //   expect(data).toEqual({
-  //     mutations.REGISTER: {
-  //       ...mockUser
-  //     }
-  //   });
-  // });
+  });
 
-})
+});
