@@ -22,11 +22,6 @@ app
 .use(express.static('public'))
 .use(jwtCheck)
 .use(graphqlUploadExpress({ maxFileSize: 10000000, maxFiles: 11 }))
-// app.use(
-//   cors(),
-//   express.static('public'),
-//   jwtCheck,
-//   graphqlUploadExpress({ maxFileSize: 10000000, maxFiles: 11 }));
 
 server.applyMiddleware({ app });
 
