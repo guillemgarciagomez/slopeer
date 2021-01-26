@@ -2,7 +2,7 @@ require('dotenv').config();
 import app from './graphql/index'
 import { connection } from './models/index';
 
-connection() //Connect to MongoDB, then fire up the server
+export default connection() //Connect to MongoDB, then fire up the server
   .then(() => {
     app
       .listen(4000, () => {
@@ -10,3 +10,4 @@ connection() //Connect to MongoDB, then fire up the server
       });
   })
   .catch(console.error);
+
