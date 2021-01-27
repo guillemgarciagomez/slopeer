@@ -6,7 +6,9 @@ import mongoose from 'mongoose';
 // import {Route, User} from '../models/index';
 import resolvers from '../graphql/resolvers'
 import typeDefs from '../graphql/schemas'
-import { mutations, queries} from './__mocks__/queryAndMutations'
+import { mutations} from './__mocks__/queryAndMutations'
+import {TestDB, DB_HOST } from './jest.setup-file';
+
 
 //mocking connection to DB and GraphQL
 type express= {res:Response, req: Request}  
@@ -20,12 +22,12 @@ export const server = new ApolloServer({
   // mockEntireSchema: false,
 });
 
-const { DB_HOST,TestDB } = process.env;
+// const { DB_HOST,TestDB } = process.env;
 const mongoDB:string =  `${DB_HOST}/${TestDB}`
 async function connectToDB () {
   return await mongoose.connect(`${mongoDB}`,
     { useUnifiedTopology: true, useNewUrlParser: true },
-    (err) => console.log(`Connected database ${TestDB}, error: ${err} 🗄`)); //eslint-disable-line no-console
+    (err) => console.log(`Connected database ${DB_HOST}/${TestDB}, error: ${err} 🗄`)); //eslint-disable-line no-console
 }
 
 //functions to clean the database and close its connection
@@ -52,10 +54,14 @@ afterAll(async ()=>{
   await closeDbConnection();
 })
 
+const REGISTER = `
+mutation {
+createUser(input: {email: "test", username: "mail_2@mail.com", password: "password"})
+}`
 
 describe('Add new user', ()=> {
   
-  const {query, mutate} = createTestClient(server as any);
+  const { mutate} = createTestClient(server as any);
   
  
  
@@ -75,15 +81,17 @@ describe('Add new user', ()=> {
   
   test('should add a new user', async ()=>{
     let res = await mutate ({
-      mutation: mutations.REGISTER, 
+      mutation: REGISTER, 
       variables: { 
         ...mockUser
       }});
-    expect(res.errors).toBeUndefined();
+    console.log(res, 'res')
+    expect(res).toBeTruthy();
     
     
     res =  await mutate ({mutation: mutations.LOGIN,variables: {email: mockUser.email, password: mockUser.password}});
     //what to expect? 
+    
     expect (res.data.user).toBeTruthy()
     //how can we access the recently created user make a query with its id if the id is created by mongo
     // res = await query ({query:queries.GET_USER_DATA, variables:{_id:}})  
