@@ -1,22 +1,40 @@
 import { useState, useEffect } from 'preact/hooks'
 import { route } from 'preact-router'
 import { useMutation } from '@urql/preact'
-
+import { h, FunctionComponent } from 'preact'
 import { useAuth } from '../../context/AuthContext'
 import { mutations } from '../../services/graphqlService'
 import { RouteForm } from '../../components/'
 
+type CoordType = {
+  coords: {
+    latitude: number;
+    longitude: number;
+  }
+}
+
+export type RouteDataType = {
+  name: string;
+  public: boolean;
+  type: string;
+  grade: string;
+  description: string;
+  lat: string;
+  lng: string;
+  author: any;
+}
+
 const getPosition = () =>
-  new Promise((resolve, reject) => {
+  new Promise<CoordType>((resolve, reject) => {
     navigator.geolocation.getCurrentPosition(resolve, reject, { enableHighAccuracy: true })
   })
 
-const parseCoords = (lat, lng) => ({
-  lat: Number(lat).toFixed(4),
-  lng: Number(lng).toFixed(4)
+const parseCoords = (lat: number, lng: number) => ({
+  lat: lat.toFixed(4),
+  lng: lng.toFixed(4)
 })
 
-const AddRoute = () => {
+const AddRoute: FunctionComponent = () => {
   const initialData = {
     name: '',
     public: true,
@@ -28,11 +46,15 @@ const AddRoute = () => {
     author: useAuth().user
   }
   const [{ fetching: creatingRoute }, createRoute] = useMutation(mutations.createRoute)
-  const [routeData, setRouteData] = useState(initialData)
+  const [routeData, setRouteData] = useState<RouteDataType>(initialData)
   const [coords, setCoords] = useState('current')
 
-  const setCurrentLoc = async (e) => {
+  const updateLoc = async (e: Event) => {
     if (e) e.preventDefault()
+    await setCurrentLoc();
+  }
+
+  const setCurrentLoc = async () => {
     if (typeof window !== 'undefined' && 'navigator' in window) {
       const { coords: { latitude, longitude } } = await getPosition()
       setRouteData(prevData => ({
@@ -40,10 +62,10 @@ const AddRoute = () => {
         ...parseCoords(latitude, longitude)
       }))
     }
-    setCoords('current')
+    setCoords('current');
   }
 
-  const setMapLoc = (e) => {
+  const setMapLoc = (e: Event) => {
     e.preventDefault()
     let mapLoc
     if (typeof window !== 'undefined') {
@@ -59,11 +81,13 @@ const AddRoute = () => {
     }
   }
 
-  useEffect(async () => {
-    await setCurrentLoc()
+  useEffect(() => {
+    (async () => {
+      await setCurrentLoc()
+    })()
   }, [])
 
-  const handleSubmit = async (e) => {
+  const handleSubmit = async (e: Event) => {
     e.preventDefault()
     if (routeData.name) {
       const variables = { ...routeData }
@@ -80,7 +104,7 @@ const AddRoute = () => {
     onSubmit={handleSubmit}
     hasCoords={true}
     coords={coords}
-    setCurrentLoc={setCurrentLoc}
+    updateLoc={updateLoc}
     setMapLoc={setMapLoc}
   />
 }

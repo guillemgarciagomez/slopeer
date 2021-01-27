@@ -1,10 +1,20 @@
 import { route } from 'preact-router'
-
+import { h, FunctionComponent } from 'preact';
 import { Picture } from '../'
 import { gradeColor, gradeBckgColor } from '../../utils/routes'
-import style from './style'
+import style from './style.css';
 
-const LargeRouteCard = ({ data: { picture, name, grade, _id, type } }) =>
+type LargeRouteCardProps = {
+  data: {
+    picture: string;
+    name: string;
+    grade: number | string;
+    _id: string;
+    type: string;
+  }
+}
+
+const LargeRouteCard: FunctionComponent<LargeRouteCardProps> = ({ data: { picture, name, grade, _id, type } }) =>
   <div class={style.split} onClick={() => route(`route/${_id}`)}>
     <Picture
       profile={false}

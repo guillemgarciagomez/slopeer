@@ -1,7 +1,18 @@
-import { profilePicturesUrl, routePicturesUrl } from '../../../config'
-import { selectPlaceholder } from '../../utils/routes'
+import { profilePicturesUrl, routePicturesUrl } from '../../config'
+import { selectPlaceholder } from '../../utils/routes';
+import { h, FunctionComponent } from 'preact';
 
-const Picture = ({ profile, picture, username, type, routename, pictureStyle, imageStyle }) => {
+type PictureProps = {
+  profile: boolean;
+  picture: string;
+  username?: string;
+  type: string;
+  routename: string;
+  pictureStyle: any;
+  imageStyle: any;
+}
+
+const Picture: FunctionComponent<PictureProps> = ({ profile, picture, username, type, routename, pictureStyle, imageStyle }) => {
   const baseUrl = profile ? profilePicturesUrl : routePicturesUrl
   let defaultUrl
   let webpUrl

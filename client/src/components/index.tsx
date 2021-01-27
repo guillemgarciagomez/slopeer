@@ -1,4 +1,4 @@
-import AuthenticatedApp from './authenticatedApp'
+import AuthenticatedApp from './authenticatedApp/index.js'
 import Content from './content'
 import Footer from './footer'
 import FormCard from './formCard'

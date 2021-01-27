@@ -1,6 +1,6 @@
 import express from 'express';
 import cors from 'cors';
-import { graphqlUploadExpress } from 'graphql-upload/index';
+import { graphqlUploadExpress } from 'graphql-upload';
 import { ApolloServer } from 'apollo-server-express';
 import jwtCheck from '../middleware/jwtCheck';
 

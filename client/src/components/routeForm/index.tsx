@@ -1,33 +1,49 @@
-import { FormCard, Upload } from '../'
+import { FormCard, Upload } from '..'
 import { grades } from '../../utils/routes'
 import style from './style.css'
+import { h, FunctionComponent, JSX } from 'preact';
+import { RouteDataType } from '../../routes/addRoute';
+import { StateUpdater } from 'preact/hooks';
 
-const RouteForm = ({ title, showSpinner, routeData, setRouteData, onSubmit, validate, hasCoords, coords, setCurrentLoc, setMapLoc }) => {
-  const handleChange = (e) => {
-    const { target } = e
-    const value = target.type === 'checkbox' ? target.checked : target.value
-    const name = target.name
+type RouteFormProps = {
+  title: string;
+  showSpinner: boolean;
+  routeData: RouteDataType;
+  setRouteData: StateUpdater<RouteDataType>;
+  onSubmit: (e: Event) => Promise<void>;
+  hasCoords: boolean;
+  coords: string;
+  updateLoc: (e: Event) => Promise<void>;
+  setMapLoc: (e: Event) => void;
+}
 
-    if (name === 'picture') {
-      if (target.validity.valid && target.files) {
+const RouteForm: FunctionComponent<RouteFormProps> = ({ title, showSpinner, routeData, setRouteData, onSubmit, hasCoords, coords, updateLoc, setMapLoc }) => {
+  const handleChange = (e: JSX.TargetedEvent<HTMLFormElement, Event>) => {
+    if(e.target) {
+      const { currentTarget } = e
+      const value = currentTarget.type === 'checkbox' ? currentTarget.checked : currentTarget.value
+      const name = currentTarget.name
+      if (name === 'picture') {
+        if (currentTarget.validity.valid && currentTarget.files) {
+          setRouteData(prevData => ({
+            ...prevData,
+            picture: currentTarget.files[0]
+          }))
+        }
+      } else {
         setRouteData(prevData => ({
           ...prevData,
-          picture: target.files[0]
+          [name]: value
         }))
       }
-    } else {
-      setRouteData(prevData => ({
-        ...prevData,
-        [name]: value
-      }))
     }
   }
 
   return (
     <FormCard showSpinner={showSpinner}>
-      <center>
+      <div style={{'text-align': 'center'}}>
         <h1>{title}</h1>
-      </center>
+      </div>
       <form onChange={handleChange} class={style.addForm} onSubmit={onSubmit}>
         <h2> Name </h2>
         <input type='text' name='name' value={routeData.name} placeholder='Name' onInput={() => console.log('hello')} />
@@ -53,7 +69,7 @@ const RouteForm = ({ title, showSpinner, routeData, setRouteData, onSubmit, vali
               <div class={style.buttonWrap}>
 
                 <button
-                  onClick={setCurrentLoc}
+                  onClick={updateLoc}
                   class={coords === 'current' ? style.activeButton : style.ghostButton}
                 >
                   Current

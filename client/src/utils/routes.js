@@ -1,4 +1,4 @@
-import { routePicturesUrl } from '../../config'
+import { routePicturesUrl } from '../config'
 
 const gradeColors = {
   1: ['#EAE2B7', 'black'],

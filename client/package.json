@@ -31,7 +31,7 @@
     "eslint-plugin-react": "^7.22.0",
     "jest": "^24.9.0",
     "jest-preset-preact": "^1.0.0",
-    "preact-cli": "^3.0.0",
+    "preact-cli": "^2.2.1",
     "sirv-cli": "1.0.3"
   },
   "dependencies": {
@@ -45,6 +45,7 @@
     "preact": "^10.5.11",
     "preact-render-to-string": "^5.1.4",
     "preact-router": "^3.2.1",
+    "typescript": "^3.9.7",
     "worker-loader": "^3.0.7"
   },
   "jest": {

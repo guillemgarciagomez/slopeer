@@ -16,9 +16,9 @@ function AuthProvider (props) {
       if (typeof window !== 'undefined') {
         localStorage.setItem('accessToken', token)
       }
-      setUser(_id)
+      setUser(_id);
     } catch {
-      setUser(null)
+      setUser(null);
     }
   }
 

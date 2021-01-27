@@ -4,7 +4,7 @@ import { offlineExchange } from '@urql/exchange-graphcache'
 import { makeDefaultStorage } from '@urql/exchange-graphcache/default-storage'
 
 import schema from '../../schema.json'
-import { serverUrl } from '../../../config'
+import { serverUrl } from '../../config'
 import queries from './queries'
 import mutations from './mutations'
 
