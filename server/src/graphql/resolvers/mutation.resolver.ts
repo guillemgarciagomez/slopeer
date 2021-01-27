@@ -41,7 +41,7 @@ export const updateRoute = async (_: any, { _id, input }: Input) => {
 
 exports.removeRoute = async (_: any, { _id }: Input) => {
   const route = await Route.findByIdAndDelete(_id);
-  await User.findByIdAndUpdate(route.author, { $pull: { 'owned_routes': _id } }, { useFindAndModify: false });
+  if (route) await User.findByIdAndUpdate(route.author, { $pull: { 'owned_routes': _id } }, { useFindAndModify: false });
   await User.updateMany({}, { $pull: { 'saved_routes': _id } });
   return route;
 };

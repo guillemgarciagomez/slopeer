@@ -1,4 +1,7 @@
-module.exports = `
+import{ gql } from 'apollo-server-express'
+
+export default gql`
+
 scalar FileUpload
 
 type User {
@@ -23,4 +26,4 @@ type Route {
   picture: String
   description: String
 }
-`
+`;

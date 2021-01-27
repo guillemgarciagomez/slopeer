@@ -1,4 +1,6 @@
-module.exports = `
+import{ gql } from 'apollo-server-express'
+
+export default gql`
 
   input NewRouteInput {
     name: String!
