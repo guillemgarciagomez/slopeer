@@ -3,11 +3,10 @@ import { createTestClient } from 'apollo-server-testing';
 import {ApolloServer } from  'apollo-server-express';
 import {Request, Response} from 'express';
 import mongoose from 'mongoose';
-// import casual from 'casual';
 // import {Route, User} from '../models/index';
 import resolvers from '../graphql/resolvers'
 import typeDefs from '../graphql/schemas'
-import { mutations} from './__mocks__/queryAndMutations'
+import { mutations, queries} from './__mocks__/queryAndMutations'
 
 //mocking connection to DB and GraphQL
 type express= {res:Response, req: Request}  
@@ -82,10 +81,13 @@ describe('Add new user', ()=> {
       }});
     expect(res.errors).toBeUndefined();
     
-      
+    
     res =  await mutate ({mutation: mutations.LOGIN,variables: {email: mockUser.email, password: mockUser.password}});
     //what to expect? 
     expect (res.data.user).toBeTruthy()
+    //how can we access the recently created user make a query with its id if the id is created by mongo
+    // res = await query ({query:queries.GET_USER_DATA, variables:{_id:}})  
+    
 
   });
 
