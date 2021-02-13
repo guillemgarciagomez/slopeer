@@ -72,3 +72,6 @@ To run this app locally follow this instructions:
 * Install the dependencies for the front end by running `cd client && npm i` from the root folder.
 * Start the server by running `node inex.js` in a terminal inside the server folder (Note: MongoDB should be installed and running for this to work properly).
 * Run the client using `npm dev` in a terminal inside the client folder.
+
+# This is great! Will this project go live ?
+Most likely not. If you want something similar, head over to https://www.thecrag.com/en/home .
