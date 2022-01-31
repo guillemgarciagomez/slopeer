@@ -8,7 +8,8 @@ const server = new ApolloServer({
   typeDefs: require('./schemas'),
   resolvers: require('./resolvers'),
   context: ({ req, res }) => ({ req, res }),
-  uploads: false
+  uploads: false,
+  introspection: process.env.NODE_ENV !== 'production'
 });
 
 const app = express();
