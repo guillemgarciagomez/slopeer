@@ -29,13 +29,13 @@
   },
   "dependencies": {
     "@urql/exchange-graphcache": "^3.4.0",
-    "@urql/exchange-multipart-fetch": "^0.1.11",
+    "@urql/exchange-multipart-fetch": "^0.1.14",
     "@urql/preact": "^1.4.4",
-    "graphql": "^15.4.0",
+    "graphql": "^15.8.0",
     "jwt-decode": "^3.1.2",
-    "mapbox-gl": "^2.0.1",
+    "mapbox-gl": "^2.6.1",
     "preact": "^10.3.2",
-    "preact-render-to-string": "^5.1.4",
+    "preact-render-to-string": "^5.1.19",
     "preact-router": "^3.2.1",
     "worker-loader": "^3.0.7"
   },
