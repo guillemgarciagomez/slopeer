@@ -11,14 +11,14 @@
   "dependencies": {
     "apollo-server-express": "^2.25.3",
     "aws-sdk": "^2.1057.0",
-    "bcrypt": "^5.0.0",
+    "bcrypt": "^5.0.1",
     "cors": "^2.8.5",
     "dotenv": "^8.6.0",
-    "express": "^4.17.1",
+    "express": "^4.17.2",
     "graphql": "^15.8.0",
     "graphql-upload": "^11.0.0",
     "jsonwebtoken": "^8.5.1",
     "mongoose": "^5.13.14",
-    "webp-converter": "^2.3.1"
+    "webp-converter": "^2.3.3"
   }
 }
